@@ -136,6 +136,8 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
+  generatedPassword = [];
+  currentLength = 0;
   getPasswordOptions();
 var i = currentLength;
 while(i < length){
@@ -157,7 +159,6 @@ function writePassword() {
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
-  generatedPassword = [];
 }
 
 // Add event listener to generate button
