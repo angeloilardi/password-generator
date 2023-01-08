@@ -120,7 +120,7 @@ var currentLength = 0;
 function getPasswordOptions() {
   // Prompt for the desired password length
   lengthInput = prompt(`How many characthers should your password have? Enter a number between ${minLenght} and ${maxLenght}`);
-  if (lengthInput < minLenght || lengthInput > maxLenght) {
+  if (lengthInput < minLenght || lengthInput > maxLenght || typeof(lengthInput) !== "number") {
     // alert in case the user did not input a number between the min and max length
     alert(`${lengthInput} is not a number between ${minLenght} and ${maxLenght}, try again`);
   } else {
@@ -135,8 +135,8 @@ function getPasswordOptions() {
         generatedPassword.push(getRandom(characterOptions[i].content));
         // currentLength is increased by 1 so that we know how many more characters will be needed for the rest of the password
         currentLength++;
-      }
-    }
+      };
+    };
     if (chosenCharacters.length === 0) alert("You need to select at least one character type. Let's try again.");
     
   }
