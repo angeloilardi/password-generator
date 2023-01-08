@@ -88,22 +88,25 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+
 // Initializing variables in the global scope
 var chosenCharacters = [];
 var generatedPassword = [];
 var length = 0;
+var minLenght = 10;
+var maxLenght = 64;
 var currentLength = 0;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
   // Prompt for the desired password length
   lengthInput = prompt("How many characthers should your password have? Enter a number between 10 and 64");
-  if (lengthInput < 10 || lengthInput > 65) {
-    // alert in case the user did not input a number between 10 and 64
-    alert(`${lengthInput} is not a number between 10 and 64, try again`);
+  if (lengthInput < minLenght || lengthInput > maxLenght) {
+    // alert in case the user did not input a number between the min and max length
+    alert(`${lengthInput} is not a number between ${minLenght} and ${maxLenght}, try again`);
   } else {
     length = lengthInput;
-    var lowerCaseChoice = confirm("Please chosse at least one of the following options: do you want your password to include lowercase characters?");
+    var lowerCaseChoice = confirm("Please choose at least one of the following options: do you want your password to include lowercase characters?");
     if (lowerCaseChoice) {
       // for each character type chosen, its characters are added to chosenCharacters using the concat method
       chosenCharacters = chosenCharacters.concat(...lowerCasedCharacters);
