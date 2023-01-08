@@ -87,7 +87,26 @@ var upperCasedCharacters = [
   'Y',
   'Z'
 ];
+// Creating an array of objects with character options
+var characterOptions = [
+  {
+    name: "lower case letters",
+    content: lowerCasedCharacters,
+  },
+  {
+    name: "upper case letters",
+    content: upperCasedCharacters,
+  },
+  {
+    name: "numbers",
+    content: numericCharacters,
+  },
+  {
+    name: "special characters",
+    content: specialCharacters,
+  },
 
+]
 
 // Initializing variables in the global scope
 var chosenCharacters = [];
@@ -106,34 +125,20 @@ function getPasswordOptions() {
     alert(`${lengthInput} is not a number between ${minLenght} and ${maxLenght}, try again`);
   } else {
     length = lengthInput;
-    var lowerCaseChoice = confirm("Please choose at least one of the following options: do you want your password to include lowercase characters?");
-    if (lowerCaseChoice) {
-      // for each character type chosen, its characters are added to chosenCharacters using the concat method
-      chosenCharacters = chosenCharacters.concat(...lowerCasedCharacters);
-      // in order to have at least one character per type, the first character of the password will be a random character of such type
-      generatedPassword.push(getRandom(lowerCasedCharacters));
-      // currentLenght is increased by 1 so that we know how many more characters will be needed for the rest of the password
-      currentLength++;
+// the loop goes through the character options and prompts the user to make a choice for each of threm
+    for (i=0; i < characterOptions.length; i++){
+      var userChoice = confirm(`Do you want your password to include ${characterOptions[i].name}?`);
+      if (userChoice) {
+        // for each character type chosen, its characters are added to chosenCharacters using the concat method
+        chosenCharacters = chosenCharacters.concat(characterOptions[i].content);
+        // in order to have at least one character per type, the first character of the password will be a random character of such type
+        generatedPassword.push(getRandom(characterOptions[i].content));
+        // currentLength is increased by 1 so that we know how many more characters will be needed for the rest of the password
+        currentLength++;
+      }
     }
-    var upperCaseChoice = confirm("Do you want your password to include uppercase characters?");
-    if (upperCaseChoice) {
-      chosenCharacters = chosenCharacters.concat(upperCasedCharacters);
-      generatedPassword.push(getRandom(upperCasedCharacters));
-      currentLength++;
-    }
-    var numbersChoice = confirm("Do you want your password to include numbers?");
-    if (numbersChoice) {
-      chosenCharacters = chosenCharacters.concat(numericCharacters);
-      generatedPassword.push(getRandom(numericCharacters));
-      currentLength++;
-    }
-    var specialCharChoice = confirm("Do you want your password to include special characters?");
-    if (specialCharChoice) {
-      chosenCharacters = chosenCharacters.concat(specialCharacters);
-      generatedPassword.push(getRandom(specialCharacters));
-      currentLength++;
-    }
-    if (chosenCharacters.length === 0) alert("You need to select at least one character type. Let's try again.")
+    if (chosenCharacters.length === 0) alert("You need to select at least one character type. Let's try again.");
+    
   }
 }
 
@@ -144,10 +149,10 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  //reset password and currentLenght so that we can generate a password at every click of the button without having to refrsh the page;
+  //reset password and currentLenght so that we can generate a password at every click of the button without having to refresh the page;
   generatedPassword = [];
   currentLength = 0;
-  // calling the function that prompt the user to choose the password options
+  // calling the function that prompts the user to choose the password options
   getPasswordOptions();
   // starting to add a random character from the current length (the first characters will be those guaranteeing that there's one for each type)
   var i = currentLength;
