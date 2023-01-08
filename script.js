@@ -118,11 +118,11 @@ var currentLength = 0;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // Prompt for the desired password length
-  lengthInput = prompt(`How many characthers should your password have? Enter a number between ${minLenght} and ${maxLenght}`);
-  if (lengthInput < minLenght || lengthInput > maxLenght || typeof(lengthInput) !== "number") {
-    // alert in case the user did not input a number between the min and max length
-    alert(`${lengthInput} is not a number between ${minLenght} and ${maxLenght}, try again`);
+  // Prompt for the desired password length and coversion of the string to a number
+  var lengthInput = (prompt(`How many characthers should your password have? Enter a number between ${minLenght} and ${maxLenght}`)) * 1;
+  if (Number.isNaN(lengthInput) ||lengthInput < minLenght || lengthInput > maxLenght)  {
+    // alert in case the user did not input a number between the min and max length or if the value is not a number
+    alert(`You did not enter a number between ${minLenght} and ${maxLenght}, try again`);
   } else {
     length = lengthInput;
 // the loop goes through the character options and prompts the user to make a choice for each of threm
