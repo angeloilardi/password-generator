@@ -119,7 +119,7 @@ var currentLength = 0;
 // Function to prompt user for password options
 function getPasswordOptions() {
   // Prompt for the desired password length
-  lengthInput = prompt("How many characthers should your password have? Enter a number between 10 and 64");
+  lengthInput = prompt(`How many characthers should your password have? Enter a number between ${minLenght} and ${maxLenght}`);
   if (lengthInput < minLenght || lengthInput > maxLenght) {
     // alert in case the user did not input a number between the min and max length
     alert(`${lengthInput} is not a number between ${minLenght} and ${maxLenght}, try again`);
