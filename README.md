@@ -17,7 +17,7 @@ To start the password generation, the user clicks on the 'Generate Password' but
 
 The generated password will show up in the text box and it will contain at least one character for each character type.
 
-The page is available at https://helldorado82.github.io/password-generator/
+The page is available at https://angeloilardi.github.io/password-generator/
 
 
 
